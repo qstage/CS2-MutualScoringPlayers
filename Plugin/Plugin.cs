@@ -7,7 +7,7 @@ namespace MutualScoringPlayers;
 public class Plugin : BasePlugin
 {
     public override string ModuleName { get; } = "MutualScoringPlayers";
-    public override string ModuleVersion { get; } = "1.0.0";
+    public override string ModuleVersion { get; } = "1.0.1";
     public override string ModuleAuthor { get; } = "xstage";
 
     private readonly Dictionary<CCSPlayerController, MutualScoring> mutualScoring_ = [];
@@ -58,8 +58,6 @@ public class Plugin : BasePlugin
 
         mutualScoring_[victim].ResetRow(attacker);
         mutualScoring_[attacker].IncrementScore(victim);
-
-        attacker.PrintToCenter($"{attacker.PlayerName} |{mutualScoring_[attacker].Kills[victim]}:{mutualScoring_[victim].Kills[attacker]}| {victim.PlayerName} (+{mutualScoring_[attacker].KillsRow[victim]} row)");
 
         if (!attacker.IsBot)
         attacker.PrintToChat(Localizer.ForPlayer(attacker, "Plugin.Attacker", Localizer["Plugin.Tag"], attacker.PlayerName, mutualScoring_[attacker].Kills[victim],
