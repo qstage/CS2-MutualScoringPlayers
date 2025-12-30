@@ -1,23 +1,21 @@
-using CounterStrikeSharp.API.Core;
-
 namespace MutualScoringPlayers;
 
 public class MutualScoring
 {
-    public Dictionary<CCSPlayerController, int> Kills { get; set; } = [];
-    public Dictionary<CCSPlayerController, int> KillsRow { get; set; } = [];
+    public Dictionary<int, int> Kills { get; set; } = [];
+    public Dictionary<int, int> KillsRow { get; set; } = [];
 
-    public void Init(CCSPlayerController target)
+    public void Init(int slot)
     {
-        Kills.TryAdd(target, 0);
-        KillsRow.TryAdd(target, 0);
+        Kills.TryAdd(slot, 0);
+        KillsRow.TryAdd(slot, 0);
     }
 
-    public void IncrementScore(CCSPlayerController target)
+    public void IncrementScore(int slot)
     {
-        Kills[target]++;
-        KillsRow[target]++;
+        Kills[slot]++;
+        KillsRow[slot]++;
     }
 
-    public void ResetRow(CCSPlayerController target) => KillsRow[target] = 0;
+    public void ResetRow(int target) => KillsRow[target] = 0;
 }
